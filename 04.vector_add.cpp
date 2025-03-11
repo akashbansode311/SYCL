@@ -7,7 +7,7 @@
 using namespace sycl;
 
 int main() {
-    // Number of bytFes to allocate for N integers
+    // Number of bytes to allocate for N integers
     size_t bytes = N * sizeof(int);
 
     // Allocate memory for arrays on host
