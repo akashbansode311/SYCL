@@ -37,6 +37,7 @@ int main() {
     // Define work-group size
     size_t local_work_size = 128;
     size_t global_work_size = ((N + local_work_size - 1) / local_work_size) * local_work_size;
+    size_t num_work_groups = global_work_size / local_work_size;
 
     // Launch kernel
     q.parallel_for(nd_range<1>(range<1>(global_work_size), range<1>(local_work_size)),
@@ -69,9 +70,9 @@ int main() {
     std::cout << "\n---------------------------\n";
     std::cout << "__SUCCESS__\n";
     std::cout << "---------------------------\n";
-    std::cout << "N                 = " << N << "\n";
-    std::cout << "Threads Per Block = " << local_work_size << "\n";
-    std::cout << "Blocks In Grid    = " << global_work_size / local_work_size << "\n";
+    std::cout << "N                      = " << N << "\n";
+    std::cout << "Local Work-Group Size  = " << local_work_size << "\n";
+    std::cout << "Number of Work-Groups  = " << num_work_groups << "\n";
     std::cout << "---------------------------\n\n";
 
     return 0;
